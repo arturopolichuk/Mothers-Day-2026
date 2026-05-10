@@ -1,0 +1,758 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Mother's Day 💐</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=DM+Sans:wght@300;400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #FAF6F0;
+    --warm-white: #FFFDF9;
+    --gold: #C9A96E;
+    --gold-light: #E8D5B0;
+    --sage: #7A8C6E;
+    --dark: #2A2320;
+    --blush: #E8C4B0;
+    --terracotta: #C47D5E;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background-color: var(--cream);
+    font-family: 'DM Sans', sans-serif;
+    color: var(--dark);
+    overflow-x: hidden;
+    min-height: 100vh;
+  }
+
+  /* Sky & ambient background */
+  .sky {
+    position: fixed;
+    inset: 0;
+    background: linear-gradient(170deg, #D9E8D4 0%, #EFE6D8 40%, #FAF0E6 70%, #FDF6EC 100%);
+    z-index: 0;
+  }
+
+  .sky::before {
+    content: '';
+    position: fixed;
+    top: -200px; right: -200px;
+    width: 700px; height: 700px;
+    background: radial-gradient(circle, rgba(201,169,110,0.12) 0%, transparent 70%);
+    border-radius: 50%;
+    animation: float 8s ease-in-out infinite alternate;
+  }
+
+  @keyframes float {
+    from { transform: translateY(0px) scale(1); }
+    to   { transform: translateY(30px) scale(1.05); }
+  }
+
+  /* Floating leaves */
+  .leaf {
+    position: fixed;
+    font-size: 1.4rem;
+    opacity: 0;
+    animation: leafFall linear infinite;
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  @keyframes leafFall {
+    0%   { transform: translateY(-60px) rotate(0deg); opacity: 0; }
+    10%  { opacity: 0.6; }
+    90%  { opacity: 0.4; }
+    100% { transform: translateY(110vh) rotate(360deg); opacity: 0; }
+  }
+
+  .wrapper {
+    position: relative;
+    z-index: 10;
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 60px 24px 80px;
+  }
+
+  /* Header pill */
+  .tag {
+    display: inline-block;
+    background: var(--sage);
+    color: white;
+    font-size: 0.68rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    padding: 6px 18px;
+    border-radius: 100px;
+    margin-bottom: 28px;
+    opacity: 0;
+    animation: fadeUp 0.8s ease forwards 0.2s;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.6rem, 8vw, 4.2rem);
+    line-height: 1.1;
+    color: var(--dark);
+    margin-bottom: 6px;
+    opacity: 0;
+    animation: fadeUp 0.9s ease forwards 0.4s;
+  }
+
+  h1 em {
+    font-style: italic;
+    color: var(--terracotta);
+  }
+
+  .subtitle {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.3rem;
+    font-style: italic;
+    color: var(--sage);
+    margin-bottom: 40px;
+    opacity: 0;
+    animation: fadeUp 0.9s ease forwards 0.55s;
+  }
+
+  /* The Grove scene */
+  .grove-scene {
+    background: white;
+    border-radius: 24px;
+    padding: 36px 32px;
+    box-shadow: 0 4px 40px rgba(42,35,32,0.08), 0 1px 4px rgba(42,35,32,0.05);
+    margin-bottom: 28px;
+    opacity: 0;
+    animation: fadeUp 1s ease forwards 0.7s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .grove-img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    object-position: center 60%;
+    border-radius: 14px;
+    margin-bottom: 24px;
+    display: block;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+  }
+
+  .grove-scene::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--sage), var(--gold), var(--terracotta), var(--gold), var(--sage));
+    background-size: 300% 100%;
+    animation: shimmer 4s ease infinite;
+  }
+
+  @keyframes shimmer {
+    0%   { background-position: 0% 50%; }
+    50%  { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+
+  .grove-illustration {
+    text-align: center;
+    padding: 20px 0 28px;
+    position: relative;
+  }
+
+  .trolley {
+    font-size: 2.8rem;
+    display: inline-block;
+    animation: trolleyRide 6s ease-in-out infinite;
+    position: relative;
+  }
+
+  @keyframes trolleyRide {
+    0%, 100% { transform: translateX(-12px); }
+    50%       { transform: translateX(12px); }
+  }
+
+  .scene-icons {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    gap: 18px;
+    margin-top: 10px;
+    font-size: 2rem;
+  }
+
+  .scene-icons span {
+    display: inline-block;
+    animation: sway 3s ease-in-out infinite;
+  }
+
+  .scene-icons span:nth-child(2) { animation-delay: 0.4s; font-size: 2.6rem; }
+  .scene-icons span:nth-child(3) { animation-delay: 0.8s; }
+  .scene-icons span:nth-child(4) { animation-delay: 0.2s; font-size: 2.6rem; }
+  .scene-icons span:nth-child(5) { animation-delay: 0.6s; }
+
+  @keyframes sway {
+    0%, 100% { transform: rotate(-3deg); }
+    50%       { transform: rotate(3deg); }
+  }
+
+  .fountain {
+    font-size: 1.6rem;
+    animation: pulse 2s ease-in-out infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { transform: scaleY(1); }
+    50%       { transform: scaleY(1.15); }
+  }
+
+  .message-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.22rem;
+    line-height: 1.75;
+    color: var(--dark);
+    text-align: center;
+  }
+
+  .message-text strong {
+    font-weight: 600;
+    color: var(--terracotta);
+  }
+
+  /* Divider */
+  .divider {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin: 8px 0;
+  }
+
+  .divider::before, .divider::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold-light), transparent);
+  }
+
+  .divider-icon { font-size: 1rem; }
+
+  /* Gift card */
+  .card-reveal {
+    opacity: 0;
+    animation: fadeUp 1s ease forwards 1.0s;
+  }
+
+  .card-label {
+    font-size: 0.72rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--sage);
+    text-align: center;
+    margin-bottom: 18px;
+  }
+
+  .gift-card {
+    background: linear-gradient(135deg, #1A1A1A 0%, #2C2C2C 50%, #1A1A1A 100%);
+    border-radius: 20px;
+    padding: 32px 36px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.25), 0 4px 16px rgba(0,0,0,0.15);
+    cursor: pointer;
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+  }
+
+  .gift-card:hover {
+    transform: translateY(-6px) rotate(-1deg);
+    box-shadow: 0 30px 70px rgba(0,0,0,0.3), 0 8px 24px rgba(0,0,0,0.2);
+  }
+
+  .gift-card::before {
+    content: '';
+    position: absolute;
+    top: -80px; right: -80px;
+    width: 220px; height: 220px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(201,169,110,0.15), transparent 70%);
+    pointer-events: none;
+  }
+
+  .gift-card::after {
+    content: '';
+    position: absolute;
+    bottom: -40px; left: -40px;
+    width: 180px; height: 180px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(201,169,110,0.08), transparent 70%);
+    pointer-events: none;
+  }
+
+  .nordstrom-wordmark {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    color: white;
+    margin-bottom: 24px;
+    position: relative;
+    z-index: 2;
+  }
+
+  .card-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    position: relative;
+    z-index: 2;
+  }
+
+  .card-tag {
+    font-size: 0.6rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.45);
+    line-height: 1.6;
+  }
+
+  .card-amount {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.4rem;
+    font-weight: 700;
+    color: var(--gold);
+    letter-spacing: 0.02em;
+    text-shadow: 0 0 30px rgba(201,169,110,0.4);
+  }
+
+  .card-chip {
+    width: 38px; height: 28px;
+    background: linear-gradient(135deg, var(--gold), #B8932A);
+    border-radius: 5px;
+    margin-bottom: 18px;
+    position: relative;
+    z-index: 2;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+  }
+
+  .card-chip::after {
+    content: '';
+    position: absolute;
+    inset: 5px;
+    border: 1.5px solid rgba(255,255,255,0.25);
+    border-radius: 3px;
+  }
+
+  /* Note */
+  .note-card {
+    background: white;
+    border-radius: 20px;
+    padding: 32px 32px;
+    box-shadow: 0 4px 30px rgba(42,35,32,0.07);
+    margin-top: 28px;
+    opacity: 0;
+    animation: fadeUp 1s ease forwards 1.2s;
+    position: relative;
+  }
+
+  .note-card::before {
+    content: '💌';
+    position: absolute;
+    top: -16px; left: 50%;
+    transform: translateX(-50%);
+    font-size: 1.8rem;
+    background: var(--cream);
+    padding: 0 8px;
+  }
+
+  .note-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    text-align: center;
+    color: var(--dark);
+    margin-bottom: 14px;
+    margin-top: 8px;
+    letter-spacing: 0.01em;
+  }
+
+  .note-body {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.18rem;
+    line-height: 1.8;
+    color: #4A3E3A;
+    text-align: center;
+  }
+
+  .note-sig {
+    margin-top: 20px;
+    text-align: right;
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 1.05rem;
+    color: var(--terracotta);
+  }
+
+  /* Footer */
+  .footer {
+    text-align: center;
+    margin-top: 44px;
+    opacity: 0;
+    animation: fadeUp 1s ease forwards 1.5s;
+  }
+
+  .flower-row {
+    font-size: 1.5rem;
+    letter-spacing: 0.15em;
+    display: block;
+    margin-bottom: 10px;
+    animation: flowerBob 2s ease-in-out infinite;
+  }
+
+  @keyframes flowerBob {
+    0%, 100% { transform: scale(1); }
+    50%       { transform: scale(1.08); }
+  }
+
+  .footer-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 0.95rem;
+    font-style: italic;
+    color: var(--sage);
+    letter-spacing: 0.05em;
+  }
+
+  /* Confetti pop on load */
+  .confetti-piece {
+    position: fixed;
+    width: 8px; height: 8px;
+    border-radius: 2px;
+    opacity: 0;
+    pointer-events: none;
+    z-index: 100;
+    animation: confettiFall 3s ease-out forwards;
+  }
+
+  @keyframes confettiFall {
+    0%   { opacity: 1; transform: translateY(0) rotate(0deg); }
+    100% { opacity: 0; transform: translateY(60vh) rotate(720deg); }
+  }
+
+  .hint {
+    text-align: center;
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: rgba(122,140,110,0.6);
+    margin-top: 10px;
+  }
+</style>
+</head>
+<body>
+
+<div class="sky"></div>
+
+<!-- Floating leaves -->
+<div class="leaf" style="left:8%; animation-duration:9s; animation-delay:0s; font-size:1.1rem;">🍃</div>
+<div class="leaf" style="left:22%; animation-duration:12s; animation-delay:2s;">🌿</div>
+<div class="leaf" style="left:55%; animation-duration:10s; animation-delay:1s; font-size:1rem;">🍃</div>
+<div class="leaf" style="left:75%; animation-duration:14s; animation-delay:3.5s;">🌿</div>
+<div class="leaf" style="left:88%; animation-duration:11s; animation-delay:0.5s; font-size:1rem;">🍃</div>
+<div class="leaf" style="left:40%; animation-duration:13s; animation-delay:4s;">🌿</div>
+
+<div class="wrapper">
+
+  <div class="tag">Mother's Day · 2026</div>
+
+  <h1>A Day <em>All</em><br>For You</h1>
+  <p class="subtitle">While the boys are off at the game…</p>
+
+  <!-- Grove scene card -->
+  <div class="grove-scene">
+    <!-- Inline SVG illustration of The Grove LA -->
+    <svg viewBox="0 0 620 200" xmlns="http://www.w3.org/2000/svg" style="width:100%;border-radius:14px;display:block;margin-bottom:24px;box-shadow:0 4px 20px rgba(0,0,0,0.1)">
+      <defs>
+        <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#C9E4D8"/>
+          <stop offset="100%" stop-color="#EEE0CC"/>
+        </linearGradient>
+        <linearGradient id="ground" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#8BA870"/>
+          <stop offset="100%" stop-color="#6D8A55"/>
+        </linearGradient>
+        <linearGradient id="bldgL" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#D4C5B0"/>
+          <stop offset="100%" stop-color="#B8A890"/>
+        </linearGradient>
+        <linearGradient id="bldgR" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#C8B9A2"/>
+          <stop offset="100%" stop-color="#AE9E86"/>
+        </linearGradient>
+        <linearGradient id="trolleyGrad" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#C03030"/>
+          <stop offset="100%" stop-color="#9A1E1E"/>
+        </linearGradient>
+        <linearGradient id="fountainGrad" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#6AAEC8"/>
+          <stop offset="100%" stop-color="#4A8EA8"/>
+        </linearGradient>
+        <style>
+          .water-jet { animation: waterAnim 1.5s ease-in-out infinite alternate; transform-origin: 310px 128px; }
+          .water-jet2 { animation: waterAnim 1.5s ease-in-out infinite alternate-reverse; transform-origin: 310px 128px; }
+          @keyframes waterAnim { from { transform: scaleY(1); opacity:1; } to { transform: scaleY(0.7); opacity:0.7; } }
+          .trolley-car { animation: trolleyMove 5s ease-in-out infinite alternate; }
+          @keyframes trolleyMove { from { transform: translateX(0); } to { transform: translateX(22px); } }
+          .palm-sway { animation: palmS 3s ease-in-out infinite alternate; transform-origin: bottom center; }
+          .palm-sway2 { animation: palmS 3.5s ease-in-out infinite alternate-reverse; transform-origin: bottom center; }
+          @keyframes palmS { from { transform: rotate(-3deg); } to { transform: rotate(3deg); } }
+          .flag { animation: flagWave 2s ease-in-out infinite alternate; transform-origin: left center; }
+          @keyframes flagWave { from { transform: skewX(0deg); } to { transform: skewX(-8deg); } }
+        </style>
+      </defs>
+
+      <!-- Sky -->
+      <rect width="620" height="200" fill="url(#sky)"/>
+
+      <!-- Soft clouds -->
+      <ellipse cx="80" cy="38" rx="45" ry="14" fill="white" opacity="0.55"/>
+      <ellipse cx="115" cy="32" rx="30" ry="12" fill="white" opacity="0.55"/>
+      <ellipse cx="500" cy="44" rx="38" ry="12" fill="white" opacity="0.45"/>
+      <ellipse cx="535" cy="38" rx="25" ry="10" fill="white" opacity="0.45"/>
+
+      <!-- Ground / plaza -->
+      <rect x="0" y="148" width="620" height="52" fill="#C8B898"/>
+      <rect x="0" y="148" width="620" height="8" fill="url(#ground)" opacity="0.4"/>
+      <!-- Plaza tiles -->
+      <rect x="0" y="152" width="620" height="1" fill="#B8A880" opacity="0.4"/>
+      <rect x="0" y="160" width="620" height="1" fill="#B8A880" opacity="0.4"/>
+      <rect x="0" y="168" width="620" height="1" fill="#B8A880" opacity="0.4"/>
+      <line x1="80" y1="148" x2="80" y2="200" stroke="#B8A880" stroke-width="0.5" opacity="0.4"/>
+      <line x1="160" y1="148" x2="160" y2="200" stroke="#B8A880" stroke-width="0.5" opacity="0.4"/>
+      <line x1="240" y1="148" x2="240" y2="200" stroke="#B8A880" stroke-width="0.5" opacity="0.4"/>
+      <line x1="320" y1="148" x2="320" y2="200" stroke="#B8A880" stroke-width="0.5" opacity="0.4"/>
+      <line x1="400" y1="148" x2="400" y2="200" stroke="#B8A880" stroke-width="0.5" opacity="0.4"/>
+      <line x1="480" y1="148" x2="480" y2="200" stroke="#B8A880" stroke-width="0.5" opacity="0.4"/>
+      <line x1="560" y1="148" x2="560" y2="200" stroke="#B8A880" stroke-width="0.5" opacity="0.4"/>
+
+      <!-- Left building (Art Deco) -->
+      <rect x="20" y="60" width="90" height="92" fill="url(#bldgL)" rx="2"/>
+      <!-- Ornate cornice -->
+      <rect x="18" y="55" width="94" height="8" fill="#C8B8A0" rx="1"/>
+      <rect x="22" y="50" width="86" height="7" fill="#D0C0A8" rx="1"/>
+      <!-- Windows left bldg -->
+      <rect x="30" y="70" width="16" height="22" fill="#A8C8D8" rx="1" opacity="0.7"/>
+      <rect x="54" y="70" width="16" height="22" fill="#A8C8D8" rx="1" opacity="0.7"/>
+      <rect x="78" y="70" width="16" height="22" fill="#A8C8D8" rx="1" opacity="0.7"/>
+      <rect x="30" y="102" width="16" height="22" fill="#A8C8D8" rx="1" opacity="0.7"/>
+      <rect x="54" y="102" width="16" height="22" fill="#A8C8D8" rx="1" opacity="0.7"/>
+      <rect x="78" y="102" width="16" height="22" fill="#A8C8D8" rx="1" opacity="0.7"/>
+      <!-- Door arch left -->
+      <rect x="50" y="128" width="24" height="24" fill="#8A9880" rx="12 12 0 0"/>
+      <!-- Flag left -->
+      <line x1="65" y1="50" x2="65" y2="30" stroke="#888" stroke-width="1.5"/>
+      <rect x="65" y="30" width="18" height="10" fill="#C9A96E" class="flag"/>
+
+      <!-- Right building (Art Deco) -->
+      <rect x="510" y="50" width="95" height="100" fill="url(#bldgR)" rx="2"/>
+      <rect x="508" y="44" width="99" height="8" fill="#BEA890" rx="1"/>
+      <rect x="512" y="38" width="91" height="8" fill="#CAB49A" rx="1"/>
+      <!-- Stepped top -->
+      <rect x="524" y="30" width="67" height="10" fill="#C0AA8E" rx="1"/>
+      <rect x="536" y="22" width="43" height="10" fill="#C8B496" rx="1"/>
+      <!-- Windows right bldg -->
+      <rect x="520" y="58" width="16" height="22" fill="#A8C8D8" rx="1" opacity="0.7"/>
+      <rect x="545" y="58" width="16" height="22" fill="#A8C8D8" rx="1" opacity="0.7"/>
+      <rect x="570" y="58" width="16" height="22" fill="#A8C8D8" rx="1" opacity="0.7"/>
+      <rect x="520" y="90" width="16" height="22" fill="#A8C8D8" rx="1" opacity="0.7"/>
+      <rect x="545" y="90" width="16" height="22" fill="#A8C8D8" rx="1" opacity="0.7"/>
+      <rect x="570" y="90" width="16" height="22" fill="#A8C8D8" rx="1" opacity="0.7"/>
+      <rect x="520" y="122" width="16" height="26" fill="#A8C8D8" rx="1" opacity="0.7"/>
+      <rect x="570" y="122" width="16" height="26" fill="#A8C8D8" rx="1" opacity="0.7"/>
+      <!-- Door arch right -->
+      <rect x="546" y="128" width="24" height="24" fill="#8A9880" rx="12 12 0 0"/>
+
+      <!-- Mid building hint -->
+      <rect x="130" y="80" width="70" height="70" fill="#D8CABB" rx="2" opacity="0.6"/>
+      <rect x="128" y="75" width="74" height="7" fill="#C8B8A4" rx="1" opacity="0.6"/>
+      <rect x="145" y="90" width="14" height="18" fill="#A8C8D8" rx="1" opacity="0.55"/>
+      <rect x="167" y="90" width="14" height="18" fill="#A8C8D8" rx="1" opacity="0.55"/>
+
+      <!-- Mid building right hint -->
+      <rect x="420" y="75" width="70" height="75" fill="#CCB8A2" rx="2" opacity="0.6"/>
+      <rect x="418" y="70" width="74" height="7" fill="#BCA892" rx="1" opacity="0.6"/>
+      <rect x="433" y="85" width="14" height="18" fill="#A8C8D8" rx="1" opacity="0.55"/>
+      <rect x="455" y="85" width="14" height="18" fill="#A8C8D8" rx="1" opacity="0.55"/>
+
+      <!-- Palm trees -->
+      <!-- Left palm -->
+      <g class="palm-sway">
+        <rect x="197" y="82" width="5" height="68" fill="#8B6D45" rx="2"/>
+        <ellipse cx="199" cy="78" rx="24" ry="12" fill="#5A8040" transform="rotate(-20,199,78)"/>
+        <ellipse cx="199" cy="78" rx="24" ry="12" fill="#6A9448" transform="rotate(10,199,78)"/>
+        <ellipse cx="199" cy="78" rx="22" ry="11" fill="#5A8040" transform="rotate(40,199,78)"/>
+        <ellipse cx="199" cy="78" rx="20" ry="10" fill="#6A9448" transform="rotate(-45,199,78)"/>
+        <circle cx="199" cy="80" r="5" fill="#7AAA50"/>
+      </g>
+      <!-- Right palm -->
+      <g class="palm-sway2">
+        <rect x="416" y="78" width="5" height="72" fill="#8B6D45" rx="2"/>
+        <ellipse cx="418" cy="74" rx="24" ry="12" fill="#5A8040" transform="rotate(20,418,74)"/>
+        <ellipse cx="418" cy="74" rx="24" ry="12" fill="#6A9448" transform="rotate(-10,418,74)"/>
+        <ellipse cx="418" cy="74" rx="22" ry="11" fill="#5A8040" transform="rotate(-40,418,74)"/>
+        <ellipse cx="418" cy="74" rx="20" ry="10" fill="#6A9448" transform="rotate(45,418,74)"/>
+        <circle cx="418" cy="76" r="5" fill="#7AAA50"/>
+      </g>
+
+      <!-- Fountain basin -->
+      <ellipse cx="310" cy="148" rx="52" ry="10" fill="#7AAABB" opacity="0.5"/>
+      <ellipse cx="310" cy="148" rx="44" ry="8" fill="#8ABCCC" opacity="0.4"/>
+      <!-- Fountain pillar -->
+      <rect x="306" y="100" width="8" height="50" fill="#C0B09A" rx="3"/>
+      <ellipse cx="310" cy="100" rx="10" ry="5" fill="#CAB8A2"/>
+      <!-- Water jets -->
+      <g class="water-jet">
+        <ellipse cx="310" cy="88" rx="3" ry="14" fill="#88CCE0" opacity="0.8"/>
+      </g>
+      <g class="water-jet2">
+        <ellipse cx="298" cy="105" rx="2.5" ry="10" fill="#88CCE0" opacity="0.6" transform="rotate(-30,298,128)"/>
+        <ellipse cx="322" cy="105" rx="2.5" ry="10" fill="#88CCE0" opacity="0.6" transform="rotate(30,322,128)"/>
+        <ellipse cx="292" cy="110" rx="2" ry="8" fill="#88CCE0" opacity="0.5" transform="rotate(-50,292,128)"/>
+        <ellipse cx="328" cy="110" rx="2" ry="8" fill="#88CCE0" opacity="0.5" transform="rotate(50,328,128)"/>
+      </g>
+      <!-- Water ripple rings -->
+      <ellipse cx="310" cy="147" rx="28" ry="5" fill="none" stroke="#6AB0C0" stroke-width="1" opacity="0.6"/>
+      <ellipse cx="310" cy="147" rx="40" ry="7" fill="none" stroke="#6AB0C0" stroke-width="0.7" opacity="0.35"/>
+
+      <!-- Trolley tracks -->
+      <line x1="120" y1="162" x2="380" y2="162" stroke="#A0906A" stroke-width="2.5"/>
+      <line x1="120" y1="168" x2="380" y2="168" stroke="#A0906A" stroke-width="2.5"/>
+      <line x1="130" y1="162" x2="130" y2="168" stroke="#A0906A" stroke-width="1.5"/>
+      <line x1="150" y1="162" x2="150" y2="168" stroke="#A0906A" stroke-width="1.5"/>
+      <line x1="170" y1="162" x2="170" y2="168" stroke="#A0906A" stroke-width="1.5"/>
+      <line x1="190" y1="162" x2="190" y2="168" stroke="#A0906A" stroke-width="1.5"/>
+      <line x1="210" y1="162" x2="210" y2="168" stroke="#A0906A" stroke-width="1.5"/>
+      <line x1="230" y1="162" x2="230" y2="168" stroke="#A0906A" stroke-width="1.5"/>
+      <line x1="250" y1="162" x2="250" y2="168" stroke="#A0906A" stroke-width="1.5"/>
+
+      <!-- Trolley car -->
+      <g class="trolley-car">
+        <!-- Body -->
+        <rect x="132" y="130" width="86" height="34" fill="url(#trolleyGrad)" rx="4"/>
+        <!-- Roof -->
+        <rect x="128" y="124" width="94" height="10" fill="#B02020" rx="3"/>
+        <!-- Windows -->
+        <rect x="140" y="135" width="16" height="14" fill="#B8DDE8" rx="2" opacity="0.85"/>
+        <rect x="162" y="135" width="16" height="14" fill="#B8DDE8" rx="2" opacity="0.85"/>
+        <rect x="184" y="135" width="16" height="14" fill="#B8DDE8" rx="2" opacity="0.85"/>
+        <!-- Door -->
+        <rect x="204" y="138" width="10" height="26" fill="#881818" rx="1"/>
+        <!-- Wheels -->
+        <circle cx="152" cy="166" r="7" fill="#2A2320"/>
+        <circle cx="152" cy="166" r="3" fill="#C9A96E"/>
+        <circle cx="196" cy="166" r="7" fill="#2A2320"/>
+        <circle cx="196" cy="166" r="3" fill="#C9A96E"/>
+        <!-- Trolley pole -->
+        <line x1="175" y1="124" x2="175" y2="108" stroke="#888" stroke-width="2"/>
+        <line x1="175" y1="108" x2="200" y2="102" stroke="#888" stroke-width="1.5"/>
+        <!-- THE GROVE text on trolley -->
+        <text x="175" y="146" font-family="serif" font-size="7" fill="white" text-anchor="middle" letter-spacing="1" font-weight="bold">THE GROVE</text>
+      </g>
+
+      <!-- Decorative lights string -->
+      <path d="M 20 68 Q 65 80 110 68 Q 155 56 200 68 Q 245 80 290 68" fill="none" stroke="#C9A96E" stroke-width="1.2" opacity="0.5"/>
+      <circle cx="65" cy="76" r="2.5" fill="#FFDD88" opacity="0.8"/>
+      <circle cx="110" cy="68" r="2.5" fill="#FFDD88" opacity="0.8"/>
+      <circle cx="155" cy="61" r="2.5" fill="#FFDD88" opacity="0.8"/>
+      <circle cx="200" cy="68" r="2.5" fill="#FFDD88" opacity="0.8"/>
+      <circle cx="245" cy="74" r="2.5" fill="#FFDD88" opacity="0.8"/>
+
+      <path d="M 330 68 Q 380 56 430 68 Q 480 80 530 68 Q 570 58 600 68" fill="none" stroke="#C9A96E" stroke-width="1.2" opacity="0.5"/>
+      <circle cx="380" cy="59" r="2.5" fill="#FFDD88" opacity="0.8"/>
+      <circle cx="430" cy="68" r="2.5" fill="#FFDD88" opacity="0.8"/>
+      <circle cx="480" cy="74" r="2.5" fill="#FFDD88" opacity="0.8"/>
+      <circle cx="530" cy="68" r="2.5" fill="#FFDD88" opacity="0.8"/>
+
+      <!-- The Grove wordmark -->
+      <text x="310" y="26" font-family="Georgia, serif" font-size="13" fill="#2A2320" text-anchor="middle" letter-spacing="4" opacity="0.75">THE GROVE</text>
+      <text x="310" y="38" font-family="Georgia, serif" font-size="7" fill="#7A8C6E" text-anchor="middle" letter-spacing="3" opacity="0.7">LOS ANGELES</text>
+    </svg>
+    <div class="grove-illustration">
+      <div class="trolley">🚃</div>
+      <div class="scene-icons">
+        <span>🌳</span>
+        <span>🌸</span>
+        <span class="fountain">⛲</span>
+        <span>🌸</span>
+        <span>🌳</span>
+      </div>
+    </div>
+
+    <div class="divider"><span class="divider-icon">✦</span></div>
+
+    <p class="message-text" style="margin: 22px 0 0;">
+      You get <strong>The Grove</strong> — fountain walks, the trolley,
+      a perfect coffee in hand, and absolutely no schedule. Today is yours.
+    </p>
+  </div>
+
+  <!-- Gift card reveal -->
+  <div class="card-reveal">
+    <p class="card-label">Your gift inside</p>
+    <div class="gift-card" onclick="popConfetti(this)">
+      <div class="nordstrom-wordmark">NORDSTROM</div>
+      <div class="card-chip"></div>
+      <div class="card-bottom">
+        <div class="card-tag">Gift Card<br>Happy Mother's Day</div>
+        <div class="card-amount">$150</div>
+      </div>
+    </div>
+    <p class="hint">tap the card ✦</p>
+  </div>
+
+  <!-- Personal note -->
+  <div class="note-card">
+    <div class="note-title">A note from us</div>
+    <p class="note-body">
+      Ma! Happy Mother's Day! Eres la mejor, gracias por todo lo que has hecho por nosotros
+      y gracias por ser la mejor mamá! Nunca cambies, te queremos mucho y esperamos que
+      disfrutes este shopping spree... you deserve it!
+    </p>
+    <div class="note-sig">Con amor, Arturo &amp; Alexa 🖤</div>
+  </div>
+
+  <!-- Footer -->
+  <div class="footer">
+    <span class="flower-row">🌷 🌸 💐 🌸 🌷</span>
+    <span class="footer-text">Happy Mother's Day — enjoy every single minute of it</span>
+  </div>
+
+</div>
+
+<script>
+  function popConfetti(el) {
+    const colors = ['#C9A96E','#7A8C6E','#E8C4B0','#C47D5E','#2A2320'];
+    const rect = el.getBoundingClientRect();
+    for (let i = 0; i < 40; i++) {
+      const piece = document.createElement('div');
+      piece.classList.add('confetti-piece');
+      piece.style.background = colors[Math.floor(Math.random() * colors.length)];
+      piece.style.left = (rect.left + Math.random() * rect.width) + 'px';
+      piece.style.top  = (rect.top  + Math.random() * 60) + 'px';
+      piece.style.animationDelay = (Math.random() * 0.5) + 's';
+      piece.style.animationDuration = (2 + Math.random() * 2) + 's';
+      piece.style.transform = `rotate(${Math.random()*360}deg)`;
+      piece.style.borderRadius = Math.random() > 0.5 ? '50%' : '2px';
+      piece.style.width = (6 + Math.random() * 8) + 'px';
+      piece.style.height = (6 + Math.random() * 8) + 'px';
+      document.body.appendChild(piece);
+      setTimeout(() => piece.remove(), 4000);
+    }
+  }
+</script>
+
+</body>
+</html>
